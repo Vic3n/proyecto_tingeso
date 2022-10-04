@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Build JAR File'){
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Vic3n/app_calculo_sueldos']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Vic3n/proyecto_tingeso']]])
                 bat 'mvn clean install -DskipTests'
             }
         }
