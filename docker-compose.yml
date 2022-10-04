@@ -7,19 +7,18 @@ services:
       - ./data/db:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: cal_app
+      MYSQL_DATABASE: app_calculo_sueldos
     ports:
-      - 1001:3308
-  cal_app:
-    container_name:  app-calculo-sueldos
-    image: gigavice/cal_app
+      - 33080:3308
+  app_sueldos:
+    container_name:  calculo-sueldos
+    image: gigavice/calculo-sueldos-app
     ports:
-      -  "8081:8081"
+      -  "8080:8080"
     environment:
-      DB_URL: jdbc:mysql://mysql-db:3308/db
-      DB_USERNAME: root
-      DB_PASSWORD: admin
-      DB_DIALECT: MySQL8Dialect
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3308/app_calculo_sueldos?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=admin
     deploy:
       restart_policy:
         condition: on-failure
