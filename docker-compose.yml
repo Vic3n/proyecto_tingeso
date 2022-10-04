@@ -7,16 +7,16 @@ services:
       - ./data/db:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: app_calculo_sueldos
+      MYSQL_DATABASE: db
     ports:
-      - 33080:3308
-  app_sueldos:
+      - 33000:3306
+  calculo-sueldos:
     container_name:  calculo-sueldos
-    image: gigavice/calculo-sueldos-app
+    image: gigavice/calculo-sueldos
     ports:
-      -  "8080:8080"
+      -  "8090:8090"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3308/app_calculo_sueldos?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=admin
     deploy:
