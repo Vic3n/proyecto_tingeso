@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario Autorizacion</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+<!-- NAVBAR-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">HOME</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+        <ul class="navbar-nav">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/upload">Subir Reloj</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/upload/justificativo">Subir Justi.</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/crear/justificativo">Formulario Justi.</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/crear/autorizacion">Formulario Autori.</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/listar/empleados">Empleados</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/listar/categorias">Categorias</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/listar/ingresos">Ingresos</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/listar/justificativos">Justificativos</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/listar/autorizaciones">Autorizaciones</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/calcular/planilla">Calcular Planilla</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<form action="#" th:action="@{/creado/autorizacion}" th:object="${autorizacion}" method="post" >
+
+    <div class="form-row">
+        <div class="col">
+            <label>Dia:</label>
+            <input type="text" class="form-control" placeholder="15" th:field="*{dia}"/>
+        </div>
+        <div class="col">
+    <label>Mes:</label>
+    <p><select th:field="*{mes}" class="form-control" id="ano" >
+        <option value="0">Selecione un mes...</option>
+        <option value="01">Enero</option>
+        <option value="02">Febrero</option>
+        <option value="03">Marzo</option>
+        <option value="04">Abril</option>
+        <option value="05">Mayo</option>
+        <option value="06">Junio</option>
+        <option value="07">Julio</option>
+        <option value="08">Agosto</option>
+        <option value="09">Septiembre</option>
+        <option value="10">Octubre</option>
+        <option value="11">Noviembre</option>
+        <option value="12">Diciembre</option>
+    </select></p>
+        </div>
+        <div class="col">
+            <label>Año:</label>
+            <p><select th:field="*{ano}" class="form-control" id="ano" >
+                <option value="0">Selecione un año...</option>
+                <option value="2022">2022</option>
+            </select></p>
+        </div>
+
+    </div>
+
+
+
+    <label>Rut Empleado:</label>
+    <p><select th:field="*{empleado}" class="form-control" id="empleado" >
+        <option value="0">Selecciona un empleado</option>
+        <option th:each="empleado:${empleados}"
+                th:value="${empleado.id}"
+                th:text="${empleado.rut}"
+        />
+    </select></p>
+
+
+    <label>Tiempo:</label>
+    <p><input type="text" class="form-control" placeholder="120 minutos." th:field="*{tiempo}"/></p>
+    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Subir Autorizacion"/>
+</form>
+<h3 th:text="${mensaje}" ></h3>
+</body>
+</html>

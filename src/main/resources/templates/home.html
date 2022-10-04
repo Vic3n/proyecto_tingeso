@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenida - Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<!-- NAVBAR-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">HOME</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+        <ul class="navbar-nav">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/upload">Subir Reloj</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/upload/justificativo">Subir Justi.</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/crear/justificativo">Formulario Justi.</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/crear/autorizacion">Formulario Autori.</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/listar/empleados">Empleados</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/listar/categorias">Categorias</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/listar/ingresos">Ingresos</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/listar/justificativos">Justificativos</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/listar/autorizaciones">Autorizaciones</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/calcular/planilla">Calcular Planilla</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<h1>Aplicación web</h1>
+<h2>para el cálculo planillas de sueldo</h2>
+
+</body>
+</html>

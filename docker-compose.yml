@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  mysql-db:
+    image: mysql:latest
+    restart: always
+    volumes:
+      - ./data/db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: cal_app
+    ports:
+      - 1001:3308
+  cal_app:
+    container_name:  app-calculo-sueldos
+    image: gigavice/cal_app
+    ports:
+      -  "8081:8081"
+    environment:
+      DB_URL: jdbc:mysql://mysql-db:3308/db
+      DB_USERNAME: root
+      DB_PASSWORD: admin
+      DB_DIALECT: MySQL8Dialect
+    deploy:
+      restart_policy:
+        condition: on-failure
+    depends_on:
+      - mysql-db

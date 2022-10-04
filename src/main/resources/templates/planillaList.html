@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Calculo de Planilla</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+<!-- NAVBAR-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">HOME</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+        <ul class="navbar-nav">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/upload">Subir Reloj</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/upload/justificativo">Subir Justi.</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/crear/justificativo">Formulario Justi.</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/crear/autorizacion">Formulario Autori.</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/listar/empleados">Empleados</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/listar/categorias">Categorias</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/listar/ingresos">Ingresos</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/listar/justificativos">Justificativos</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/listar/autorizaciones">Autorizaciones</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/calcular/planilla">Calcular Planilla</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<form action="#" th:action="@{/calculado/planilla}" th:object="${mes_planilla}" method="post" >
+<br><div class="d-flex justify-content-center">
+<select name="mes_planilla" class="form-select form-select-lg" aria-label="Default select example">
+    <option selected>Selecione un mes...</option>
+    <option value="01">Enero</option>
+    <option value="02">Febrero</option>
+    <option value="03">Marzo</option>
+    <option value="04">Abril</option>
+    <option value="05">Mayo</option>
+    <option value="06">Junio</option>
+    <option value="07">Julio</option>
+    <option value="08">Agosto</option>
+    <option value="09">Septiembre</option>
+    <option value="10">Octubre</option>
+    <option value="11">Noviembre</option>
+    <option value="12">Diciembre</option>
+</select> <p><h4>del año 2022</h4>
+
+<button type="submit" class="btn btn-success">Calcular Planilla</button>
+
+
+</div><br>
+
+
+</form>
+<div class="d-flex flex-row-reverse">
+    <a th:href="@{/eliminar/planilla}" class="btn btn-primary"> Nueva planilla </a>
+    <a href="#" class="btn btn-secundary"> Imprimir planilla </a>
+
+</div>
+
+<div class="container-sm">
+    <table class="table">
+        <thead class="thead">
+        <tr>
+            <th>Rut</th>
+            <th>Nombre</th>
+            <th>Categoria</th>
+            <th>Tiempo servicio</th>
+            <th>Sueldo mensual</th>
+            <th>Bonificacion x años de Servicio</th>
+            <th>Pago horas extra</th>
+            <th>Descuentos</th>
+            <th>Sueldo bruto</th>
+            <th>Cotizacion Previsional</th>
+            <th>Cotizacion Salud</th>
+            <th>Monto Sueldo Final</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="planilla:${planillas}">
+            <td th:text="${planilla.rut_empleado}"></td>
+            <td th:text="${planilla.nombre_empleado}"></td>
+            <td th:text="${planilla.categoria_empleado}"></td>
+            <td th:text="${planilla.t_servicio_empleado}"></td>
+            <td th:text="${planilla.sueldo_fijo_mensual}"></td>
+            <td th:text="${planilla.monto_bonificacion_anos_servicio}"></td>
+            <td th:text="${planilla.monto_pago_horas_extra}"></td>
+            <td th:text="${planilla.monto_descuentos}"></td>
+            <td th:text="${planilla.sueldo_bruto}"></td>
+            <td th:text="${planilla.cotizacion_previsional}"></td>
+            <td th:text="${planilla.cotizacion_salud}"></td>
+            <td th:text="${planilla.monto_sueldo_final}"></td>
+            <!--
+            <td>
+                <a class="btn btn-primary" href="#" role="button">Editar</a>
+                <a class="btn btn-danger" href="#" role="button">Eliminar</a>
+            </td>
+            -->
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
