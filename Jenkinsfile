@@ -12,15 +12,15 @@ pipeline {
         }
         stage('Build Docker Image'){
             steps {
-                bat 'docker build -t gigavice/cal_app .'
+                bat 'docker build -t gigavice/calculos_app .'
             }
         }
-        stage('Push docker image'){
+        stage('Push Docker image'){
             steps {
-                withCredentials([string(credentialsId: 'dockerhubpassword', variable: 'docker_pass')]) {
-                    bat 'docker login -u gigavice -p ${docker_pass}'
+                withCredentials([string(credentialsId: 'docker_hub_password_id', variable: 'docker_hub_pass')]) {
+                    bat 'docker login -u gigavice -p %docker_hub_pass%'
                 }
-                bat 'docker push gigavice/cal_app'
+                bat 'docker push gigavice/calculos_app'
             }
         }
     }
